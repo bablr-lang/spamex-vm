@@ -1,0 +1,38 @@
+{
+  "name": "@bablr/spamex-vm",
+  "description": "A query language for matching structural patterns in CSTML",
+  "version": "0.0.0",
+  "author": "Conrad Buck<conartist6@gmail.com>",
+  "type": "module",
+  "files": [
+    "lib"
+  ],
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "@bablr/agast-helpers": "0.3.2",
+    "@bablr/coroutine": "0.1.0",
+    "@bablr/pattern-engine": "github:bablr-lang/pattern-engine#5a37111f29bd1128ce20d95f6390ef51529bb21d",
+    "@bablr/regex-vm": "0.7.1",
+    "@iter-tools/imm-stack": "1.1.0",
+    "functional-red-black-tree": "1.0.1"
+  },
+  "devDependencies": {
+    "@bablr/agast-vm-helpers": "0.3.2",
+    "@bablr/boot": "0.4.0",
+    "@bablr/eslint-config-base": "github:bablr-lang/eslint-config-base#c040bc95f2dddac160628e4757a412016044b3ef",
+    "@qnighy/dedent": "0.1.1",
+    "enhanced-resolve": "^5.12.0",
+    "eslint": "^8.32.0",
+    "eslint-import-resolver-enhanced-resolve": "^1.0.5",
+    "eslint-plugin-import": "^2.27.5",
+    "expect": "29.7.0",
+    "prettier": "^2.6.2",
+    "mocha": "10.7.3"
+  },
+  "repository": "github:bablr-lang/spamex-vm",
+  "homepage": "https://github.com/bablr-lang/spamex-vm",
+  "license": "MIT"
+}
