@@ -1,7 +1,7 @@
 import { dedent } from '@qnighy/dedent';
 import { generateMatches as exec } from '@bablr/spamex-vm';
 import { spam, cstml } from '@bablr/boot';
-import { streamFromTree, printTerminal } from '@bablr/agast-helpers/tree';
+import { streamFromTree, printTag, getOpenTag } from '@bablr/agast-helpers/tree';
 import { reifyExpression } from '@bablr/agast-vm-helpers';
 import { expect } from 'expect';
 
@@ -11,10 +11,15 @@ const dedentify = (tagFn) => {
   };
 };
 
-const doc = reifyExpression(dedentify(cstml.Document)`
-  <!0:cstml>
+const printOpenTags = (nodes) => {
+  return [...nodes].map((node) => printTag(getOpenTag(node))).join('');
+};
+
+describe('spamex', () => {
+  const tree = dedentify(cstml.Document)`
+  <!0:cstml bablr-language="test">
   <>
-    root:
+    .:
     <Foo>
       bar:
       <Bar />
@@ -22,18 +27,15 @@ const doc = reifyExpression(dedentify(cstml.Document)`
       <Baz />
     </>
   </>\
-`);
+`;
 
-const printOpenTags = (nodes) => {
-  return [...nodes].map((node) => printTerminal(node.children[0])).join('');
-};
+  const doc = reifyExpression(tree);
 
-describe('spamex', () => {
-  it('<?>', () => {
-    expect(printOpenTags(exec(spam`<?>`, streamFromTree(doc)))).toEqual('<Foo>');
+  it('<? />', () => {
+    expect(printOpenTags(exec(spam`<? />`, streamFromTree(doc)))).toEqual('<Foo>');
   });
 
-  it('<Bar>', () => {
-    expect(printOpenTags(exec(spam`<Bar>`, streamFromTree(doc)))).toEqual('<Bar>');
+  it('<Bar />', () => {
+    expect(printOpenTags(exec(spam`<Bar />`, streamFromTree(doc)))).toEqual('<Bar>');
   });
 });
