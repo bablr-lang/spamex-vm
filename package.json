@@ -12,7 +12,7 @@
   },
   "sideEffects": false,
   "dependencies": {
-    "@bablr/agast-helpers": "^0.5.0",
+    "@bablr/agast-helpers": "^0.5.3",
     "@bablr/coroutine": "0.1.0",
     "@bablr/pattern-engine": "^0.1.0",
     "@bablr/regex-vm": "^0.9.0",
