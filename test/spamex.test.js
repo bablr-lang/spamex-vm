@@ -18,7 +18,7 @@ const printOpenTags = (nodes) => {
 describe('spamex', () => {
   const tree = dedentify(cstml.Document)`
   <!0:cstml { bablrLanguage: "test" }>
-  <_>
+  <__>
     .:
     <Foo>
       bar:
