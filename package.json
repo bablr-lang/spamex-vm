@@ -19,7 +19,7 @@
     "@bablr/coroutine": "0.1.0",
     "@bablr/pattern-engine": "^0.1.0",
     "@bablr/regex-vm": "0.12.0",
-    "@iter-tools/imm-stack": "1.1.0",
+    "@iter-tools/imm-stack": "1.2.0",
     "functional-red-black-tree": "1.0.1"
   },
   "devDependencies": {
