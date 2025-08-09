@@ -18,7 +18,7 @@
     "@bablr/agast-helpers": "0.9.0",
     "@bablr/coroutine": "0.1.0",
     "@bablr/pattern-engine": "0.2.0",
-    "@bablr/regex-vm": "0.13.0",
+    "@bablr/regex-vm": "0.13.1",
     "@iter-tools/imm-stack": "1.2.0",
     "functional-red-black-tree": "1.0.1"
   },
