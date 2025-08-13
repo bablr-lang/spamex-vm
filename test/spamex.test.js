@@ -1,9 +1,10 @@
 import { dedent } from '@qnighy/dedent';
 import { generateMatches as exec } from '@bablr/spamex-vm';
 import { spam, cstml } from '@bablr/boot';
-import { streamFromTree, printTag, getOpenTag } from '@bablr/agast-helpers/tree';
+import { streamFromTree, printTag, getOpenTag, buildChild } from '@bablr/agast-helpers/tree';
 import { reifyExpression } from '@bablr/agast-vm-helpers';
 import { expect } from 'expect';
+import { OpenNodeTag } from '@bablr/agast-helpers/symbols';
 
 const dedentify = (tagFn) => {
   return (quasis, ...expressions) => {
@@ -12,7 +13,11 @@ const dedentify = (tagFn) => {
 };
 
 const printOpenTags = (nodes) => {
-  return [...nodes].map((node) => printTag(getOpenTag(node))).join('');
+  return [...nodes]
+    .map((node) =>
+      printTag(buildChild(OpenNodeTag, { ...getOpenTag(node).value, selfClosing: false })),
+    )
+    .join('');
 };
 
 describe('spamex', () => {
