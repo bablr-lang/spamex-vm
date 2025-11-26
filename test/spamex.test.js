@@ -22,7 +22,7 @@ const printOpenTags = (nodes) => {
 
 describe('spamex', () => {
   const tree = dedentify(cstml.Document)`
-  <!0:cstml { bablrLanguage: "test" }>
+  <!0:cstml { 'bablr-lang': "test" }>
   <__>
     .:
     <Foo>
