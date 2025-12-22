@@ -15,26 +15,28 @@ const dedentify = (tagFn) => {
 const printOpenTags = (nodes) => {
   return [...nodes]
     .map((node) =>
-      printTag(buildChild(OpenNodeTag, { ...getOpenTag(node).value, selfClosing: false })),
+      printTag(
+        buildChild(OpenNodeTag, Object.freeze({ ...getOpenTag(node).value, selfClosing: false })),
+      ),
     )
     .join('');
 };
 
 describe('spamex', () => {
   const tree = dedentify(cstml.Document)`
-  <!0:cstml { 'bablr-lang': "test" }>
-  <__>
-    .:
-    <Foo>
-      bar:
-      <Bar />
-      baz:
-      <Baz />
-    </>
-  </>\
-`;
+    <!0:cstml { 'bablr-lang': "test" }>
+    <__>
+      .:
+      <Foo>
+        bar:
+        <Bar />
+        baz:
+        <Baz />
+      </>
+    </>\
+  `;
 
-  const doc = reifyExpression(tree);
+  const doc = reifyExpression(tree).value.tree;
 
   it('<? />', () => {
     expect(printOpenTags(exec(spam`<? />`, streamFromTree(doc)))).toEqual('<Foo>');
