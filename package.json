@@ -1,7 +1,7 @@
 {
   "name": "@bablr/spamex-vm",
   "description": "A query language for matching structural patterns in CSTML",
-  "version": "0.0.0",
+  "version": "0.2.3",
   "author": "Conrad Buck<conartist6@gmail.com>",
   "type": "module",
   "files": [
