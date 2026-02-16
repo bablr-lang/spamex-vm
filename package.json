@@ -15,8 +15,8 @@
     "test": "mocha test/*.test.js"
   },
   "dependencies": {
-    "@bablr/agast-helpers": "0.10.4",
-    "@bablr/agast-vm-helpers": "0.10.4",
+    "@bablr/agast-helpers": "0.10.10",
+    "@bablr/agast-vm-helpers": "0.10.5",
     "@bablr/coroutine": "0.1.0",
     "@bablr/pattern-engine": "0.2.0",
     "@bablr/regex-vm": "0.14.2",
@@ -24,7 +24,7 @@
     "functional-red-black-tree": "1.0.1"
   },
   "devDependencies": {
-    "@bablr/boot": "0.11.3",
+    "@bablr/boot": "0.11.4",
     "@bablr/eslint-config-base": "github:bablr-lang/eslint-config-base#c040bc95f2dddac160628e4757a412016044b3ef",
     "@qnighy/dedent": "0.1.1",
     "enhanced-resolve": "^5.12.0",
