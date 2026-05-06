@@ -1,9 +1,19 @@
 import { dedent } from '@qnighy/dedent';
 import { generateMatches as exec } from '@bablr/spamex-vm';
-import { spam, cstml } from '@bablr/boot';
-import { streamFromTree, printTag, getOpenTag, buildOpenNodeTag } from '@bablr/agast-helpers/tree';
-import { reifyExpression } from '@bablr/agast-vm-helpers';
+import {
+  streamFromTree,
+  printTag,
+  getOpenTag,
+  buildOpenNodeTag,
+  treeFromString,
+} from '@bablr/agast-helpers/tree';
 import { expect } from 'expect';
+import { parseNodeMatcher } from '@bablr/agast-vm-helpers/builders';
+
+let m = (quasis, ...exprs) => {
+  let str = String.raw(quasis, exprs);
+  return parseNodeMatcher(str);
+};
 
 const dedentify = (tagFn) => {
   return (quasis, ...expressions) => {
@@ -21,7 +31,7 @@ const printOpenTags = (nodes) => {
 };
 
 describe('spamex', () => {
-  const tree = dedentify(cstml.Document)`
+  const doc = treeFromString(`
     <!0:cstml { 'bablr-lang': "test" }>
     <__>
       .:
@@ -32,15 +42,13 @@ describe('spamex', () => {
         <Baz />
       </>
     </>\
-  `;
-
-  const doc = reifyExpression(tree).value.tree;
+  `);
 
   it('<? />', () => {
-    expect(printOpenTags(exec(spam`<? />`, streamFromTree(doc)))).toEqual('<Foo>');
+    expect(printOpenTags(exec(m`<? />`, streamFromTree(doc)))).toEqual('<Foo>');
   });
 
   it('<Bar />', () => {
-    expect(printOpenTags(exec(spam`<Bar />`, streamFromTree(doc)))).toEqual('<Bar>');
+    expect(printOpenTags(exec(m`<Bar />`, streamFromTree(doc)))).toEqual('<Bar>');
   });
 });
