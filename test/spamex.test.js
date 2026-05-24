@@ -1,14 +1,10 @@
+import { expect } from 'expect';
 import { dedent } from '@qnighy/dedent';
 import { generateMatches as exec } from '@bablr/spamex-vm';
-import {
-  streamFromTree,
-  printTag,
-  getOpenTag,
-  buildOpenNodeTag,
-  treeFromString,
-} from '@bablr/agast-helpers/tree';
-import { expect } from 'expect';
-import { parseNodeMatcher } from '@bablr/agast-vm-helpers/builders';
+import { printTag, getOpenTag, buildOpenNodeTag, treeFromString } from '@bablr/agast-helpers/tree';
+import { parseTag } from '@bablr/agast-helpers/builders';
+import { streamFromTree } from '@bablr/agast-helpers/stream';
+import { parseNodeMatcher } from '@bablr/agast-vm-helpers/parsers/spamex';
 
 let m = (quasis, ...exprs) => {
   let str = String.raw(quasis, exprs);
@@ -24,7 +20,7 @@ const dedentify = (tagFn) => {
 const printOpenTags = (nodes) => {
   return [...nodes]
     .map((node) => {
-      let { flags, name, literalValue, attributes } = getOpenTag(node).value;
+      let { flags, name, literalValue, attributes } = parseTag(getOpenTag(node)).value;
       return printTag(buildOpenNodeTag(flags, name, literalValue, attributes, false));
     })
     .join('');
