@@ -2,7 +2,7 @@ import { expect } from 'expect';
 import { dedent } from '@qnighy/dedent';
 import { generateMatches as exec } from '@bablr/spamex-vm';
 import { printTag, getOpenTag, buildOpenNodeTag, treeFromString } from '@bablr/agast-helpers/tree';
-import { parseTag } from '@bablr/agast-helpers/builders';
+import { parseTag } from '@bablr/agast-helpers/parsers';
 import { streamFromTree } from '@bablr/agast-helpers/stream';
 import { parseNodeMatcher } from '@bablr/agast-vm-helpers/parsers/spamex';
 
