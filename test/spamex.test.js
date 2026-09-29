@@ -1,8 +1,8 @@
 import { expect } from 'expect';
 import { dedent } from '@qnighy/dedent';
 import { generateMatches as exec } from '@bablr/spamex-vm';
-import { printTag, getOpenTag, buildOpenNodeTag, treeFromString } from '@bablr/agast-helpers/tree';
-import { parseTag } from '@bablr/agast-helpers/parsers';
+import { getOpenTag, treeFromString } from '@bablr/agast-helpers/tree';
+import { parseTag, printTag, buildOpenNodeTag } from 'agast';
 import { streamFromTree } from '@bablr/agast-helpers/stream';
 import { parseNodeMatcher } from '@bablr/agast-vm-helpers/parsers/spamex';
 
@@ -21,7 +21,7 @@ const printOpenTags = (nodes) => {
   return [...nodes]
     .map((node) => {
       let { flags, name, literalValue, attributes } = parseTag(getOpenTag(node)).value;
-      return printTag(buildOpenNodeTag(flags, name, literalValue, attributes, false));
+      return printTag(buildOpenNodeTag(flags, null, name, literalValue, attributes, false));
     })
     .join('');
 };
