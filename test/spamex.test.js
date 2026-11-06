@@ -2,7 +2,7 @@ import { expect } from 'expect';
 import { dedent } from '@qnighy/dedent';
 import { generateMatches as exec } from '@bablr/spamex-vm';
 import { getOpenTag, treeFromString } from '@bablr/agast-helpers/tree';
-import { parseTag, printTag, buildOpenNodeTag } from 'agast';
+import { parseTag, printTag, buildOpenTag } from 'agast';
 import { streamFromTree } from '@bablr/agast-helpers/stream';
 import { parseNodeMatcher } from '@bablr/agast-vm-helpers/parsers/spamex';
 
@@ -21,7 +21,7 @@ const printOpenTags = (nodes) => {
   return [...nodes]
     .map((node) => {
       let { flags, name, literalValue, attributes } = parseTag(getOpenTag(node)).value;
-      return printTag(buildOpenNodeTag(flags, null, name, literalValue, attributes, false));
+      return printTag(buildOpenTag(flags, null, name, literalValue, attributes, false));
     })
     .join('');
 };
